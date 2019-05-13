@@ -1,0 +1,43 @@
+server:
+  port: 8083
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    #turbine 对应的集群名称
+    metadata-map:
+      cluster: ribbon
+    status-page-url: http://${eureka.instance.hostname}:${server.port}/swagger-ui.html
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+spring:
+  application:
+    name: consumer-feign
+#链路跟踪
+  zipkin:
+    base-url: http://localhost:6001
+  sleuth:
+    sampler:
+      probability: 1.0  #采样比例为1.0，是所有的访问都需要
+swagger:
+  enabled: true
+  title: 消费者feign
+  description: 消费者模块API
+  base-package: com.test.consumerfeign.controller
+  contact:
+    name: salkwqpo
+    email: 278202617@qq.com
+    url: www.hbhtxx.com
+#启用hystrix
+feign:
+  hystrix:
+    enabled: true
+#暴露所有的监控点
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
+

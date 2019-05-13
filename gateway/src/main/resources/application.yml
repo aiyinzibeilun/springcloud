@@ -1,0 +1,42 @@
+server:
+  port: 7002
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: id #路由配置的id
+          # 重点！/info必须使用http进行转发，lb代表从注册中心获取服务
+          uri: lb://producter
+          #路由断言
+          predicates:
+           - Path=/foo/**  #相当于前缀，访问时必须带前缀
+#           - Before=2019-05-01T00:00:00+08:00[Asia/Shanghai]    在时间之前允许转发（还有after,between...）
+          order: 0
+          #StripPrefix  过滤掉一个路径 (例子：请求为/foo/bar   请求到的url为  http://localhost:9001/bar)
+          filters:
+            - StripPrefix=1 #相当于去调一节目录
+      discovery:
+        locator:
+          enabled: true
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+# 暴露端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+
+

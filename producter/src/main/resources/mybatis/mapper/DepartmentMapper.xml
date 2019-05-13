@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.producter.mapper.DeptMapper">
+    <resultMap id="departmentMappper" type="com.test.producter.entity.Department">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+    </resultMap>
+    <select id="findById" resultMap="departmentMappper">
+        select id,name from department where id=#{id}
+    </select>
+    <insert id="insertDept">
+        insert into department (id,name)values (#{id},#{name})
+    </insert>
+</mapper>

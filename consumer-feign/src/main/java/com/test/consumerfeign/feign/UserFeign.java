@@ -1,0 +1,35 @@
+package com.test.consumerfeign.feign;
+
+import com.test.consumerfeign.entity.User;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
+
+/**
+ * @Author yang
+ * @Date 2019/5/8
+ */
+@FeignClient(name = "PRODUCTER",fallbackFactory = UserFallBackFactory.class)
+public interface UserFeign {
+    @RequestMapping(value = "/producter/findById/{id}", method = RequestMethod.GET)
+    public User findById(@PathVariable("id") Integer id); // 两个坑：1. @GetMapping不支持   2. @PathVariable得设置value
+
+    @RequestMapping(value = "/producter/findAll", method = RequestMethod.GET)
+    public List<User> findAll();
+
+    /**
+     * 需要添加 consumes = "application/json"
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/producter/insertUser", method = RequestMethod.POST,consumes = "application/json")
+    public int insertUser(User user);
+
+    // 该请求不会成功，只要参数是复杂对象，即使指定了是GET方法，feign依然会以POST方法进行发送请求。可能是我没找到相应的注解或使用方法错误。
+    // 如勘误，请@lilizhou2008  eacdy0000@126.com
+//    @RequestMapping(value = "/get-user", method = RequestMethod.GET)
+//    public User getUser(User user);
+}

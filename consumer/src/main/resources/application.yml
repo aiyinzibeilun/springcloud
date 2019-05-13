@@ -1,0 +1,26 @@
+server:
+  port: 8001
+eureka:
+  instance:
+    # 如果需要配置多个eureka  可以修改host文件（windows）
+    hostname: localhost
+    #在服务显示ip
+    prefer-ip-address: true
+    status-page-url: http://${eureka.instance.hostname}:${server.port}/swagger-ui.html
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+spring:
+  application:
+    name: consumer
+swagger:
+  enabled: true
+  title: 消费者
+  description: 消费者模块API
+  base-package: com.test.consumer.controller
+  contact:
+    name: salkwqpo
+    email: 278202617@qq.com
+    url: www.hbhtxx.com
+
+

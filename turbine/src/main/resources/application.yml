@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: service-turbine
+server:
+  port: 8769
+turbine:
+  aggregator:
+    clusterConfig: default
+  appConfig: CONSUMER-FEIGN,CONSUMER-RIBBON,CONSUMER-RIBBON2
+#  clusterNameExpression: metadata['cluster']  集群模式，turbine只能显示一个
+  clusterNameExpression: new String("default")
+  instanceUrlSuffix: /hystrix.stream
+  combine-host-port: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
