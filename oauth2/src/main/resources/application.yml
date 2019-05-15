@@ -2,27 +2,25 @@ spring:
   application:
     name: oauth-server
   datasource:
-    url: jdbc:mysql://localhost:3306/oauth2?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
-#   \u4F1A\u62A5\u9519 Access denied for user ''@'localhost' (using password: NO)
-#    data-username: root
-#    data-password: 123456
-    driver-class-name: com.mysql.jdbc.Driver
+    jdbc-url: jdbc:mysql://localhost:3306/oauth2?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: 123456
-    type: com.alibaba.druid.pool.DruidDataSource
-    druid:
-      initial-size: 5
-      min-idle: 5
-      max-active: 20
-      max-wait: 60000
-      time-between-eviction-runs-millis: 60000
-      min-evictable-idle-time-millis: 30000
-      validation-query: select 1 from dual
-      test-while-idle: true
-      test-on-borrow: false
-      test-on-return: false
-      pool-prepared-statements: true
-      max-pool-prepared-statement-per-connection-size: 20
-      filters: stat,wall
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 25
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: ExpendHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+
 server:
   port: 5001
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*Mapper.xml

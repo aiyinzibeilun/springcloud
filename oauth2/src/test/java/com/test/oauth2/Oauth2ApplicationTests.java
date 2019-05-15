@@ -12,9 +12,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class Oauth2ApplicationTests {
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
+
     @Test
     public void contextLoads() {
-        System.out.println(passwordEncoder.encode("secret"));
+        System.out.println(">>>>>>>>>>>>>>"+passwordEncoder.encode("secret"));
     }
 
 }
