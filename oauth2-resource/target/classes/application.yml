@@ -1,8 +1,8 @@
 spring:
   application:
-    name: oauth-server
+    name: oauth2-resource
   datasource:
-    url: jdbc:mysql://localhost:3306/oauth2-resource?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/oauth2-resource?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
     username: root
     password: 123456
     type: com.zaxxer.hikari.HikariDataSource
@@ -20,6 +20,9 @@ spring:
 
 server:
   port: 5002
+  servlet:
+    context-path: /contents
+
 
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
@@ -27,10 +30,10 @@ mybatis:
 security:
   oauth2:
     client:
-      access-token-uri: http://localhost:5001/oauth/token
-      user-authorization-uri: http://localhost:5001/oauth/authorize
       client-id: client
       client-secret: secret
+      access-token-uri: http://localhost:5001/oauth/token
+      user-authorization-uri: http://localhost:5001/oauth/authorize
     resource:
       token-info-uri: http://localhost:5001/oauth/check_token
 

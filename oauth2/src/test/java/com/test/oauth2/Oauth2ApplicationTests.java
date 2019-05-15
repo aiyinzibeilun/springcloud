@@ -15,7 +15,7 @@ public class Oauth2ApplicationTests {
 
     @Test
     public void contextLoads() {
-        System.out.println(">>>>>>>>>>>>>>"+passwordEncoder.encode("secret"));
+        System.out.println(">>>>>>>>>>>>>>"+passwordEncoder.encode("123456"));
     }
 
 }
