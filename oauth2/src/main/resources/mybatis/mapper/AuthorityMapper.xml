@@ -90,4 +90,11 @@
       permission = #{permission,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="findAuthortiesByUserId" resultMap="BaseResultMap">
+      select a.* from t_user u inner
+      join user_role r on u.id =r.user_id
+      inner join t_role_authority ra on r.role_id = ra.authority_id
+      inner join t_authority a on ra.authority_id=a.id where u.id=#{userId}
+  </select>
 </mapper>

@@ -18,7 +18,7 @@
 
         <!-- 数据库连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/oauth2?useUnicode=true&amp;characterEncoding=utf8"
+                        connectionURL="jdbc:mysql://localhost:3306/oauth2-resource?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=UTC"
                         userId="root"
                         password="123456">
         </jdbcConnection>
@@ -44,21 +44,12 @@
         </javaClientGenerator>
 
         <!-- 数据表进行生成操作 schema:相当于库名; tableName:表名; domainObjectName:对应的DO -->
-        <table schema="oauth2" tableName="t_user" domainObjectName="User"
+        <table schema="oauth2" tableName="tb_content" domainObjectName="Content"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-        <table schema="oauth2" tableName="t_role" domainObjectName="Role"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-        <table schema="oauth2" tableName="t_authority" domainObjectName="Authority"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+
 
 
     </context>

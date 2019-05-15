@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: oauth-server
+  datasource:
+    url: jdbc:mysql://localhost:3306/oauth2-resource?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 25
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: ExpendHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+
+server:
+  port: 5002
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*Mapper.xml
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:5001/oauth/token
+      user-authorization-uri: http://localhost:5001/oauth/authorize
+      client-id: client
+      client-secret: secret
+    resource:
+      token-info-uri: http://localhost:5001/oauth/check_token
+
+
+
+
