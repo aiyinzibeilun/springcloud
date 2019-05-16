@@ -58,6 +58,6 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("oauth/check_token");
+        web.ignoring().antMatchers("/oauth/check_token");
     }
 }
