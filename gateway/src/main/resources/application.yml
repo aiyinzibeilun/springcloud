@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: gateway
+  boot:
+    admin:
+      client:
+        api-path: http://localhost:4001
   cloud:
     gateway:
       routes:

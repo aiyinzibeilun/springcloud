@@ -10,6 +10,10 @@ eureka:
 spring:
   application:
     name: producter
+  boot:
+    admin:
+      client:
+        api-path: http://localhost:4001
   datasource:
     url: jdbc:mysql://localhost:3306/user1?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
 #   会报错 Access denied for user ''@'localhost' (using password: NO)

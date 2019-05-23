@@ -1,6 +1,7 @@
 spring:
   application:
     name: oauth-server
+
   datasource:
     jdbc-url: jdbc:mysql://localhost:3306/oauth2?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
     username: root
@@ -16,8 +17,19 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 30000
       connection-test-query: SELECT 1
+  boot:
+    admin:
+      client:
+        api-path: http://localhost:4001
 
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
 server:
   port: 5001
 

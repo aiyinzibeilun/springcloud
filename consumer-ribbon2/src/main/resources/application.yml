@@ -13,6 +13,10 @@ eureka:
 spring:
   application:
     name: consumer-ribbon2
+  boot:
+    admin:
+      client:
+        api-path: http://localhost:4001
 swagger:
   enabled: true
   title: 消费者ribbon
@@ -22,4 +26,13 @@ swagger:
     name: salkwqpo
     email: 278202617@qq.com
     url: www.hbhtxx.com
-
+#暴露所有的监控点
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

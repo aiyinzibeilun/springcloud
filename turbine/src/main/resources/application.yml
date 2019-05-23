@@ -1,6 +1,10 @@
 spring:
   application:
     name: service-turbine
+  boot:
+    admin:
+      client:
+        api-path: http://localhost:4001
 server:
   port: 8769
 turbine:
